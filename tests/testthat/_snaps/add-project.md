@@ -1,0 +1,50 @@
+# add_project_ui() creates the expected HTML
+
+    Code
+      add_project_ui("add_project")
+    Output
+      <div role="tabpanel" class="tab-pane" id="shiny-tab-tab_add_project">
+        <div class="tab_container btn_end">
+          <div>
+            <div class="tab-title">
+              <div class="row">
+                <div class="col-sm-6" align="left">
+                  <h3>Add Project</h3>
+                </div>
+                <div class="col-sm-6" align="right">
+                  <a target="_blank" href="https://rfm.rsquaredacademy.com">
+                    
+                    <i class="far fa-circle-question fa-2x" role="presentation" aria-label="circle-question icon"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <hr/>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12" align="center">
+                <button class="btn btn-default action-button btn-add-project" id="add_project-btn_add_project" onclick="App.highlightTab(this, &#39;next-tab&#39;)" type="button">Add Project</button>
+                <div id="add_project-add_project" class="shiny-html-output"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6" align="left">
+              <button id="add_project-back" type="button" class="btn btn-default action-button">
+                <i class="fas fa-arrow-left-long" role="presentation" aria-label="arrow-left-long icon"></i>
+                Back
+              </button>
+            </div>
+            <div class="col-sm-6" align="right">
+              <button class="btn btn-default action-button btn-next" id="add_project-next" onclick="App.highlightTab(this, &#39;next-tab&#39;)" type="button">
+                <i class="fas fa-arrow-right-long" role="presentation" aria-label="arrow-right-long icon"></i>
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+

@@ -1,0 +1,38 @@
+Package: shinytrack
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+Depends:
+    R(>= 3.2.4)
+Imports:
+    colourpicker,
+    descriptr,
+    dplyr,
+    fs,
+    grDevices,
+    htmltools,
+    lubridate,
+    magrittr,
+    plotly,
+    purrr,
+    rfm,
+    rlang,
+    shiny,
+    shinydashboard,
+    shinydashboardPlus,
+    standby,
+    stringi,
+    stringr,
+    utils,
+    yaml
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

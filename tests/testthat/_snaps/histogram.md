@@ -1,0 +1,196 @@
+# histogram_ui() creates the expected HTML
+
+    Code
+      histogram_ui("distributions")
+    Output
+      <div role="tabpanel" class="tab-pane" id="shiny-tab-tab_distributions">
+        <div class="tab_container btn_end">
+          <div>
+            <div class="row">
+              <div class="plot-buttons">
+                <div class="col-sm-4" align="left">
+                  <div class="title-help">
+                    <div class="plot-title">
+                      <h3>RFM Distribution</h3>
+                    </div>
+                    <div class="plot-help">
+                      <a target="_blank" href="https://rfm.rsquaredacademy.com">
+                        
+                        <i class="far fa-circle-question fa-1x" role="presentation" aria-label="circle-question icon"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 offset-md-2 col-sm-offset-2" align="right">
+                  <div class="col-sm-4 offset-md-4 col-sm-offset-4" align="center">
+                    <button class="btn btn-default action-button btn_customize_plot" id="distributions-btn_customize" onclick="App.plotOptions(this, &#39;customize&#39;)" style="width:120px;" type="button">Modify</button>
+                  </div>
+                  <div class="col-sm-4" align="right">
+                    <button class="btn btn-default action-button btn_download_opt" id="distributions-btn_download_opt" onclick="App.plotOptions(this, &#39;toggle&#39;)" style="width:120px;" type="button">Export</button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6" align="right">
+                  <div class="download-options">
+                    <div class="col-sm-4 offset-md-4 col-sm-offset-4" align="center">
+                      <div id="distributions-download_type" class="form-group shiny-input-radiogroup shiny-input-container" role="radiogroup" aria-labelledby="distributions-download_type-label">
+                        <label class="control-label" id="distributions-download_type-label" for="distributions-download_type"></label>
+                        <div class="shiny-options-group inline-radio">
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="distributions-download_type" value="png" checked="checked"/>
+                              <span>PNG</span>
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="distributions-download_type" value="jpeg"/>
+                              <span>JPEG</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4" align="right">
+                      <a id="distributions-btn_download_plot" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+                        <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                        Download
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12" align="center">
+                <hr/>
+              </div>
+            </div>
+            <div class="plot-order-dist">
+              <div class="plot-settings">
+                <div class="plot-details">
+                  <div class="row">
+                    <div class="col-sm-6" align="left">
+                      <h4>Modify Plot</h4>
+                    </div>
+                    <div class="col-sm-6" align="right">
+                      <button class="btn btn-default action-button btn_minimize" id="distributions-btn_minimize" onclick="App.plotOptions(this, &#39;resize&#39;)" type="button">
+                        <i class="far fa-window-minimize" role="presentation" aria-label="window-minimize icon"></i>
+                        
+                      </button>
+                    </div>
+                    <div class="col-sm-12" align="center">
+                      <hr/>
+                    </div>
+                  </div>
+                  <details>
+                    <summary>Metric</summary>
+                    <div class="col-sm-12" align="left">
+                      <div class="form-group shiny-input-container">
+                        <label class="control-label" id="distributions-metric-label" for="distributions-metric">Metric</label>
+                        <div>
+                          <select id="distributions-metric" class="shiny-input-select"><option value="recency" selected>Recency</option>
+      <option value="frequency">Frequency</option>
+      <option value="monetary">Monetary Value</option></select>
+                          <script type="application/json" data-for="distributions-metric" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+                        </div>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Title</summary>
+                    <div class="col-sm-12" align="left">
+                      <div class="form-group shiny-input-container">
+                        <label class="control-label" id="distributions-plot_title-label" for="distributions-plot_title">Plot title</label>
+                        <input id="distributions-plot_title" type="text" class="shiny-input-text form-control" value="Recency Distribution"/>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Axis Labels</summary>
+                    <div class="col-sm-5" align="left">
+                      <div class="form-group shiny-input-container">
+                        <label class="control-label" id="distributions-x_axis_label-label" for="distributions-x_axis_label">X Axis Label</label>
+                        <input id="distributions-x_axis_label" type="text" class="shiny-input-text form-control" value="Recency"/>
+                      </div>
+                    </div>
+                    <div class="col-sm-5 offset-md-2 col-sm-offset-2" align="left">
+                      <div class="form-group shiny-input-container">
+                        <label class="control-label" id="distributions-y_axis_label-label" for="distributions-y_axis_label">Y Axis Label</label>
+                        <input id="distributions-y_axis_label" type="text" class="shiny-input-text form-control" value="Count"/>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Bins / Color</summary>
+                    <div class="bar-labels">
+                      <div class="col-sm-6" align="center">
+                        <div class="form-group shiny-input-container" style="width:50%;" data-shiny-input-type="colour">
+                          <label class="control-label" for="distributions-bar_color">Select colour</label>
+                          <input id="distributions-bar_color" type="text" class="form-control shiny-colour-input" data-init-value="0f1a34" data-show-colour="both" data-palette="square"/>
+                        </div>
+                      </div>
+                      <div class="col-sm-2" align="right">
+                        <h5>Bins:</h5>
+                      </div>
+                      <div class="col-sm-4" align="left">
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="distributions-bins-label" for="distributions-bins"></label>
+                          <input id="distributions-bins" type="number" class="shiny-input-number form-control" value="9"/>
+                        </div>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Flip / Interactive</summary>
+                    <div class="col-sm-6" align="center">
+                      <div class="form-group shiny-input-container">
+                        <div class="checkbox">
+                          <label>
+                            <input id="distributions-interactive" type="checkbox" class="shiny-input-checkbox"/>
+                            <span>Interactive</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6" align="center">
+                    <button class="btn btn-default action-button btn_reset_plot" id="distributions-btn_reset" onclick="App.plotOptions(this, &#39;resize&#39;)" style="width:120px;" type="button">
+                      <i class="fas fa-arrow-rotate-left" role="presentation" aria-label="arrow-rotate-left icon"></i>
+                      Reset
+                    </button>
+                  </div>
+                  <div class="col-sm-6" align="center">
+                    <button class="btn btn-default action-button btn_resize_plot" id="distributions-btn_resize" onclick="App.plotOptions(this, &#39;resize&#39;)" style="width:120px;" type="button">
+                      <i class="fas fa-check" role="presentation" aria-label="check icon"></i>
+                      Generate
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="plot">
+                <div id="distributions-plot_output" class="shiny-html-output"></div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-buttons">
+            <div class="row">
+              <div class="col-sm-6" align="left">
+                <button class="btn btn-default action-button btn-back" id="distributions-back" type="button">
+                  <i class="fas fa-arrow-left-long" role="presentation" aria-label="arrow-left-long icon"></i>
+                  Back
+                </button>
+              </div>
+              <div class="col-sm-6" align="right">
+                <button class="btn btn-default action-button btn-next" id="distributions-next" type="button">
+                  <i class="fas fa-arrow-right-long" role="presentation" aria-label="arrow-right-long icon"></i>
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
