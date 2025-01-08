@@ -47,5 +47,11 @@ score_server <- function(id, parent, data, currency) {
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_orders")
     })
+
+    return(
+      list(
+        btn = reactive({ input$`next` })
+      )
+    )
   })
 }
