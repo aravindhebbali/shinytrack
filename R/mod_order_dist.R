@@ -209,5 +209,12 @@ order_dist_server <- function(id, parent, data, btn, btn_next, color, engine, fi
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_distributions")
     })
+
+    return(
+      list(
+        btn = reactive({ input$`next` })
+      )
+    )
+
   })
 }

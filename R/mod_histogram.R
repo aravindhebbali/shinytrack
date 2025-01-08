@@ -52,7 +52,7 @@ histogram_ui <- function(id) {
   )
 }
 
-histogram_server <- function(id, parent, data, btn, color, engine, file, flag) {
+histogram_server <- function(id, parent, data, btn, btn_next, color, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -78,6 +78,28 @@ histogram_server <- function(id, parent, data, btn, color, engine, file, flag) {
     })
 
     hist_plot <- reactiveVal()
+
+    observeEvent(btn_next(), {
+
+            hist_plot(
+              rfm_plot_histogram(
+                data(), input$metric, input$bins, input$bar_color,
+                input$plot_title, input$x_axis_label, input$y_axis_label,
+                input$interactive))
+
+        if (input$interactive) {
+          output$plotly_hist <- renderPlotly({
+              hist_plot() %>%
+                config(displayModeBar = TRUE,
+                       modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                                  "zoomOut2d", "pan2d",
+                                                  "lasso2d", "autoScale2d",
+                                                  "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_hist <- renderPlot({ hist_plot() })
+        }
+    })
 
     observe({
       updateTextInput(session, "plot_title", "Plot title",
