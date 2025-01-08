@@ -1,5 +1,5 @@
 #' Server side
-#' 
+#'
 #' Server side logic
 #'
 #' @param input, output, session Internal parameters for {shiny}
@@ -17,17 +17,26 @@ app_server <- function(input, output, session) {
   inspect_server("checklist", session, raw_data$data, raw_data$btn, type_flag)
   info_server("info", session, raw_data$btn, raw_data$data, type_flag)
   dashboard_server("dashboard", session, raw_data$btn, type_flag)
-  sel_data <- select_server("select", session, raw_data$data, type_flag, raw_data$btn, raw_data$sample)
+  sel_data <- select_server("select", session, raw_data$data, type_flag,
+    raw_data$btn, raw_data$sample)
   data <- transform_server("transform", session, sel_data$data, type_flag)
   screen_server("screen", session, data)
   view_server("view", session, data)
-  config <- configure_server("config", session, raw_data$btn, raw_data$data, type_flag, raw_data$sample)
-  rfm_score <- generate_score_server("generate_score", session, config$data_type, data, type_flag)
-  score <- score_server("display_score", session, rfm_score$score, config$currency)
-  order_dist <- order_dist_server("order_dist", session, rfm_score$score, config$btn, score$btn, config$color, config$engine, config$file_type, type_flag)
-  histogram_server("distributions", session, rfm_score$score, config$btn, order_dist$btn, config$color, config$engine, config$file_type, type_flag)
-  heatmap_server("heatmap", session, rfm_score$score, rfm_score$btn, rfm_score$bins, config$engine, config$file_type, type_flag)
-  bar_chart_server("barchart", session, rfm_score$score, config$btn, config$color, config$file_type, type_flag)
+  config <- configure_server("config", session, raw_data$btn, raw_data$data,
+    type_flag, raw_data$sample)
+  rfm_score <- generate_score_server("generate_score", session,
+    config$data_type, data, type_flag)
+  score <- score_server("display_score", session, rfm_score$score,
+    config$currency)
+  order_dist <- order_dist_server("order_dist", session, rfm_score$score,
+    config$btn, score$btn, config$color, config$engine, config$file_type,
+    type_flag)
+  hist <- histogram_server("distributions", session, rfm_score$score,
+    config$btn, order_dist$btn, config$color, config$engine, config$file_type,
+    type_flag)
+  heat_map <- heatmap_server("heatmap", session, rfm_score$score, rfm_score$btn,
+    hist$btn, rfm_score$bins, config$engine, config$file_type, type_flag)
+  bar_chart_server("barchart", session, rfm_score$score, config$btn, heat_map$btn, config$color, config$file_type, type_flag)
   segment_data <- generate_segment_server("generate_segment", session, rfm_score$score, type_flag)
   segment_server("display_segment", session, segment_data$segment, config$currency)
   segment_overview <- segment_summary_server("segment_summary", session, segment_data$segment, segment_data$btn, config$currency)

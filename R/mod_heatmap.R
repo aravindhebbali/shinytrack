@@ -48,7 +48,7 @@ heatmap_ui <- function(id) {
   )
 }
 
-heatmap_server <- function(id, parent, data, btn, bins, engine, file, flag) {
+heatmap_server <- function(id, parent, data, btn, btn_next, bins, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -72,6 +72,26 @@ heatmap_server <- function(id, parent, data, btn, bins, engine, file, flag) {
     })
 
     heat_map <- reactiveVal()
+
+    observeEvent(btn_next(), {
+        heat_map(rfm_plot_heatmap(data(), bins(), input$brewer_name,
+                                  input$x_axis_label, input$y_axis_label,
+                                  input$plot_title, input$legend_title,
+                                  input$interactive))
+
+        if (input$interactive) {
+          output$plotly_heat_map <- renderPlotly({
+              heat_map() %>%
+                config(displayModeBar = TRUE,
+                       modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                                  "zoomOut2d", "pan2d",
+                                                  "lasso2d", "autoScale2d",
+                                                  "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_heat_map <- renderPlot({ heat_map() })
+        }
+    })
 
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {
@@ -167,5 +187,12 @@ heatmap_server <- function(id, parent, data, btn, bins, engine, file, flag) {
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_bar_chart")
     })
+
+    return(
+      list(
+        btn = reactive({ input$`next` })
+      )
+    )
+
   })
 }

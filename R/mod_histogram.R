@@ -219,5 +219,12 @@ histogram_server <- function(id, parent, data, btn, btn_next, color, engine, fil
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_heatmap")
     })
+    
+    return(
+      list(
+        btn = reactive({ input$`next` })
+      )
+    )
+
   })
 }

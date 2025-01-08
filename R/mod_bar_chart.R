@@ -46,7 +46,7 @@ bar_chart_ui <- function(id) {
   )
 }
 
-bar_chart_server <- function(id, parent, data, btn, color, file, flag) {
+bar_chart_server <- function(id, parent, data, btn, btn_next, color, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -59,6 +59,15 @@ bar_chart_server <- function(id, parent, data, btn, color, file, flag) {
     })
 
     bar_chart <- reactiveVal()
+
+    observeEvent(btn_next(), {
+        bar_chart(
+          rfm_plot_bar_chart(data(), input$bar_color, input$x_axis_label,
+                             input$sec_x_axis_label, input$y_axis_label,
+                             input$sec_y_axis_label))
+
+        output$plot_bar_chart <- renderPlot({ bar_chart() })
+    })
 
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {
