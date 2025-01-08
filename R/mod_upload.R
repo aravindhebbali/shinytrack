@@ -11,7 +11,7 @@
 #' @importFrom utils read.csv 
 #' @importFrom readxl read_excel
 #' @importFrom yaml read_yaml
-#' @importFrom fs dir_copy file_delete
+#' @importFrom fs dir_copy file_move
 #' @noRd
 #'
 upload_ui <- function(id) {
@@ -265,13 +265,15 @@ upload_server <- function(id, parent, flag, btn) {
 
           set_project_title(input$cloned_project)
 
-          file_delete(paste0(proj_meta$path, "/",
+          file_move(paste0(proj_meta$path, "/",
                              proj_meta$global_dir, "/",
                              input$cloned_project, "/_",
-                             input$select_project, ".yml"))
+                             input$select_project, ".yml"), paste0(proj_meta$path, "/",           
+                                                                     proj_meta$global_dir, "/",
+                                                                     input$cloned_project, "/_",
+                                                                     input$cloned_project, ".yml"))
 
-
-          toast(
+          toast(                                                     
             title = "",
             message = paste0("Cleaning up project `", input$cloned_project, "` folder..."),
             duration = 1800,
