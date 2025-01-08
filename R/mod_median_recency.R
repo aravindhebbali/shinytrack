@@ -147,13 +147,12 @@ median_recency_server <- function(id, parent, data, btn, color, engine, file, fl
 
         if (input$interactive) {
           output$plotly_median_recency <- renderPlotly({
-            print(
               median_recency_plot() %>%
                 config(displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
-                                                  "select2d", "resetScale2d")))
+                                                  "select2d", "resetScale2d"))
           })
         } else {
           output$plot_median_recency <- renderPlot({ median_recency_plot() })

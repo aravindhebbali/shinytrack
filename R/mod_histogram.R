@@ -142,13 +142,12 @@ histogram_server <- function(id, parent, data, btn, color, engine, file, flag) {
 
         if (input$interactive) {
           output$plotly_hist <- renderPlotly({
-            print(
               hist_plot() %>%
                 config(displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
-                                                  "select2d", "resetScale2d")))
+                                                  "select2d", "resetScale2d"))
           })
         } else {
           output$plot_hist <- renderPlot({ hist_plot() })

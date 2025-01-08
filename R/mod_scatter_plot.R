@@ -149,14 +149,13 @@ updateCheckboxInput(
 
         if (input$interactive) {
           output$plotly_scatter <- renderPlotly({
-            print(
               scatter() %>%
                 config(
                   displayModeBar = TRUE,
                   modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                              "zoomOut2d", "pan2d",
                                              "lasso2d", "autoScale2d",
-                                             "select2d", "resetScale2d")))
+                                             "select2d", "resetScale2d"))
           })
         } else {
           output$plot_scatter <- renderPlot({ scatter() })

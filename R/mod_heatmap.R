@@ -119,13 +119,12 @@ heatmap_server <- function(id, parent, data, btn, bins, engine, file, flag) {
 
         if (input$interactive) {
           output$plotly_heat_map <- renderPlotly({
-            print(
               heat_map() %>%
                 config(displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
-                                                  "select2d", "resetScale2d")))
+                                                  "select2d", "resetScale2d"))
           })
         } else {
           output$plot_heat_map <- renderPlot({ heat_map() })

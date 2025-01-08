@@ -148,13 +148,12 @@ median_monetary_server <- function(id, parent, data, btn, color, engine, file, f
 
         if (input$interactive) {
           output$plotly_median_monetary <- renderPlotly({
-            print(
               median_monetary_plot() %>%
                 config(displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
-                                                  "select2d", "resetScale2d")))
+                                                  "select2d", "resetScale2d"))
           })
         } else {
           output$plot_median_monetary <- renderPlot({ median_monetary_plot() })

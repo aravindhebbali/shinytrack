@@ -148,13 +148,12 @@ median_frequency_server <- function(id, parent, data, btn, color, engine, file, 
 
         if (input$interactive) {
           output$plotly_median_frequency <- renderPlotly({
-            print(
               median_frequency_plot() %>%
                 config(displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
-                                                  "select2d", "resetScale2d")))
+                                                  "select2d", "resetScale2d"))
           })
         } else {
           output$plot_median_frequency <- renderPlot({ median_frequency_plot() })
