@@ -166,5 +166,8 @@ segment_plot_server <- function(id, parent, data, btn, btn_next, engine, file, f
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_segment_summary_plot")
     })
+
+    return(reactive({ input$`next` }))
+
   })
 }

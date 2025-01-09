@@ -48,7 +48,7 @@ revenue_plot_ui <- function(id) {
   )
 }
 
-revenue_plot_server <- function(id, parent, data, btn, engine, file, flag) {
+revenue_plot_server <- function(id, parent, data, btn, btn_next, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -71,6 +71,32 @@ updateCheckboxInput(
     })
 
     revenue_plot <- reactiveVal()
+
+    observeEvent(btn_next(), {
+        revenue_plot(
+          rfm_plot_revenue_dist(
+            data(), input$flip,
+            c(input$color_revenue, input$color_customer),
+            c(input$label_revenue, input$label_customer),
+            input$plot_title, input$x_axis_label,
+            input$y_axis_label, input$axis_label_size,
+            input$axis_label_angle, input$bar_label,
+            input$bar_label_size, input$interactive))
+
+        if (input$interactive) {
+          output$plotly_revenue <- renderPlotly({
+              revenue_plot() %>%
+                config(
+                  displayModeBar = TRUE,
+                  modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                             "zoomOut2d", "pan2d",
+                                             "lasso2d", "autoScale2d",
+                                             "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_revenue <- renderPlot({ revenue_plot() })
+        }
+    })
 
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {

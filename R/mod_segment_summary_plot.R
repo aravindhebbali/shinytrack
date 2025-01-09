@@ -58,7 +58,7 @@ segment_summary_plot_ui <- function(id) {
   )
 }
 
-segment_summary_plot_server <- function(id, parent, data, btn, color, engine, file, flag) {
+segment_summary_plot_server <- function(id, parent, data, btn, btn_next, color, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -89,6 +89,31 @@ segment_summary_plot_server <- function(id, parent, data, btn, color, engine, fi
                             "Distribution by Segment"))
       updateTextInput(session, "y_axis_label", "Y Axis Label",
                       str_to_title(input$metric))
+    })
+
+    observeEvent(btn_next(), {
+          segment_summary_plot(
+            rfm_plot_segment_summary(
+              data(), input$metric, input$sort, input$ascending, input$flip,
+              input$bar_color, input$plot_title, input$x_axis_label,
+              input$y_axis_label, input$axis_label_size, input$axis_label_angle,
+              input$bar_label, input$interactive))
+
+          if (input$interactive) {
+            output$plotly_segment_summary <- renderPlotly({
+                segment_summary_plot() %>%
+                  config(
+                    displayModeBar = TRUE,
+                    modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                               "zoomOut2d", "pan2d",
+                                               "lasso2d", "autoScale2d",
+                                               "select2d", "resetScale2d"))
+            })
+          } else {
+            output$plot_segment_summary <- renderPlot({
+              segment_summary_plot()
+            })
+          }
     })
 
     observeEvent(
@@ -246,5 +271,8 @@ segment_summary_plot_server <- function(id, parent, data, btn, color, engine, fi
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_revenue_plot")
     })
+
+    return(reactive({ input$`next` }))
+
   })
 }
