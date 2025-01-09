@@ -52,7 +52,7 @@ scatter_plot_ui <- function(id) {
   )
 }
 
-scatter_plot_server <- function(id, parent, data, btn, engine, file, flag) {
+scatter_plot_server <- function(id, parent, data, btn, btn_next, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
