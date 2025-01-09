@@ -48,7 +48,7 @@ median_monetary_ui <- function(id) {
   )
 }
 
-median_monetary_server <- function(id, parent, data, btn, color, engine, file, flag) {
+median_monetary_server <- function(id, parent, data, btn, btn_next, color, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -73,6 +73,29 @@ median_monetary_server <- function(id, parent, data, btn, color, engine, file, f
     })
 
     median_monetary_plot <- reactiveVal()
+
+    observeEvent(btn_next(), {
+        median_monetary_plot(
+          rfm_plot_median_monetary(
+            data(), input$sort, input$ascending, input$flip,
+            input$bar_color, input$plot_title,
+            input$x_axis_label, input$y_axis_label,
+            input$axis_label_size, input$axis_label_angle,
+            input$bar_label, input$interactive))
+
+        if (input$interactive) {
+          output$plotly_median_monetary <- renderPlotly({
+              median_monetary_plot() %>%
+                config(displayModeBar = TRUE,
+                       modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                                  "zoomOut2d", "pan2d",
+                                                  "lasso2d", "autoScale2d",
+                                                  "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_median_monetary <- renderPlot({ median_monetary_plot() })
+        }
+    })
 
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {

@@ -230,5 +230,8 @@ median_frequency_server <- function(id, parent, data, btn, btn_next, color, engi
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_median_monetary")
     })
+
+    return(reactive({ input$`next` }))
+
   })
 }
