@@ -86,6 +86,29 @@ updateCheckboxInput(
                       str_to_title(input$metric_y))
     })
 
+    observeEvent(btn_next(), {
+        scatter(
+          rfm_plot_segment_scatter(
+            data(), input$metric_x, input$metric_y,
+            input$plot_title, input$legend_title,
+            input$x_axis_label, input$y_axis_label,
+            input$interactive))
+
+        if (input$interactive) {
+          output$plotly_scatter <- renderPlotly({
+              scatter() %>%
+                config(
+                  displayModeBar = TRUE,
+                  modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                             "zoomOut2d", "pan2d",
+                                             "lasso2d", "autoScale2d",
+                                             "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_scatter <- renderPlot({ scatter() })
+        }
+    })
+
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {
         restore_flag <- global$plot_flag$scatter_plot

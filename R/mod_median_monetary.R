@@ -231,5 +231,8 @@ median_monetary_server <- function(id, parent, data, btn, btn_next, color, engin
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_scatter_plot")
     })
+
+    return(reactive({ input$`next` }))
+
   })
 }
