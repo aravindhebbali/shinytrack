@@ -43,7 +43,7 @@ segment_plot_ui <- function(id) {
   )
 }
 
-segment_plot_server <- function(id, parent, data, btn, engine, file, flag) {
+segment_plot_server <- function(id, parent, data, btn, btn_next, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -66,6 +66,24 @@ segment_plot_server <- function(id, parent, data, btn, engine, file, flag) {
     })
 
     segment_plot <- reactiveVal()
+
+    observeEvent(btn_next(), {
+        segment_plot(rfm_plot_segment(data(), input$metric, input$interactive))
+
+        if (input$interactive) {
+          output$plotly_segment <- renderPlotly({
+              segment_plot() %>%
+                config(
+                  displayModeBar = TRUE,
+                  modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                             "zoomOut2d", "pan2d",
+                                             "lasso2d", "autoScale2d",
+                                             "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_segment <- renderPlot({ segment_plot() })
+        }
+    })
 
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {

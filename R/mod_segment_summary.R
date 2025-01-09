@@ -56,7 +56,13 @@ segment_summary_server <- function(id, parent, data, btn, currency) {
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_segment_plot")
     })
+    
+    return(
+        list(
+            overview = segment_overview,
+            btn = reactive({ input$`next` })
+        )
+    )
 
-    return(segment_overview)
   })
 }
