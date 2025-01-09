@@ -241,5 +241,8 @@ updateCheckboxInput(
     observeEvent(input$`next`, {
       updateTabItems(session = parent, "tabs", "tab_median_recency")
     })
+
+    return(reactive({ input$`next` }))
+
   })
 }

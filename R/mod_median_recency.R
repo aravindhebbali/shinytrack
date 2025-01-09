@@ -48,7 +48,7 @@ median_recency_ui <- function(id) {
   )
 }
 
-median_recency_server <- function(id, parent, data, btn, color, engine, file, flag) {
+median_recency_server <- function(id, parent, data, btn, btn_next, color, engine, file, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -72,6 +72,29 @@ median_recency_server <- function(id, parent, data, btn, color, engine, file, fl
     })
 
     median_recency_plot <- reactiveVal()
+    
+    observeEvent(btn_next(), {
+        median_recency_plot(
+          rfm_plot_median_recency(
+            data(), input$sort, input$ascending, input$flip,
+            input$bar_color, input$plot_title,
+            input$x_axis_label, input$y_axis_label,
+            input$axis_label_size, input$axis_label_angle,
+            input$bar_label, input$interactive))
+
+        if (input$interactive) {
+          output$plotly_median_recency <- renderPlotly({
+              median_recency_plot() %>%
+                config(displayModeBar = TRUE,
+                       modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
+                                                  "zoomOut2d", "pan2d",
+                                                  "lasso2d", "autoScale2d",
+                                                  "select2d", "resetScale2d"))
+          })
+        } else {
+          output$plot_median_recency <- renderPlot({ median_recency_plot() })
+        }
+    })
 
     observeEvent(input$btn_resize, {
       if (flag() == "restore_project" || flag() == "clone_project") {
