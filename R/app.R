@@ -1,11 +1,11 @@
-#' Run app
+#' Launch app
 #'
-#' Run the shiny application.
+#' Launches the RFM shiny application.
 #'
 #' @import shiny
 #' @export
 #'
-run_app <- function() {
+rfm_app <- function() {
   shinyApp(
     ui = app_ui,
     server = app_server
