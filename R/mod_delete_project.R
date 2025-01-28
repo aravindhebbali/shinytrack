@@ -8,7 +8,6 @@
 #' @param path Reactive; path of project.
 #' @param input, output, session Internal parameters for {shiny}
 #'
-#' @importFrom fs dir_delete 
 #' @importFrom dplyr pull 
 #' @noRd
 #'
@@ -88,7 +87,8 @@ delete_project_server <- function(id, parent, btn, path) {
 
       Sys.sleep(3)
 
-      dir_delete(paste0(path(), "/rfm-projects/", input$select_project))
+      unlink(paste0(path(), "/rfm-projects/", input$select_project), 
+             recursive = TRUE)
 
       updateTabItems(session = parent, "tabs", "tab_home")
 
