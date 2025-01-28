@@ -11,7 +11,6 @@
 #' @importFrom utils read.csv 
 #' @importFrom readxl read_excel
 #' @importFrom yaml read_yaml
-#' @importFrom fs dir_copy
 #' @noRd
 #'
 upload_ui <- function(id) {
@@ -216,12 +215,13 @@ upload_server <- function(id, parent, flag, btn) {
           )
 
           Sys.sleep(2)
-          dir_copy(paste0(proj_meta$path, "/",
+          file.copy(paste0(proj_meta$path, "/",
                           proj_meta$global_dir, "/",
                           input$select_project),
                    paste0(proj_meta$path, "/",
                           proj_meta$global_dir, "/",
-                          input$cloned_project))
+                          input$cloned_project),
+          recursive = TRUE)
 
 
           toast(
