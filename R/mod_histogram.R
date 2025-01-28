@@ -13,7 +13,6 @@
 #' @param input, output, session Internal parameters for {shiny}.
 #'
 #' @importFrom rfm rfm_plot_histogram
-#' @importFrom stringr str_to_title
 #' @noRd
 #' 
 histogram_ui <- function(id) {
@@ -103,9 +102,9 @@ histogram_server <- function(id, parent, data, btn, btn_next, color, engine, fil
 
     observe({
       updateTextInput(session, "plot_title", "Plot title",
-                      paste(str_to_title(input$metric), " Distribution"))
+                      paste(to_title_case(input$metric), " Distribution"))
       updateTextInput(session, "x_axis_label", "X Axis Label",
-                      str_to_title(input$metric))
+                      to_title_case(input$metric))
     })
 
     observeEvent(input$btn_resize, {

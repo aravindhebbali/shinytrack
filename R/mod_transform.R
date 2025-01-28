@@ -51,7 +51,8 @@ transform_server <- function(id, parent, data, flag) {
 
     col_new_names <- reactive({
       names_list <- column_metadata(data, input, "new_name_ ")
-      colnames <- str_replace(names_list, " ", "_")
+      # colnames <- str_replace(names_list, " ", "_")
+      colnames <- gsub("_", " ", names_list)
     })
 
     data_final <- eventReactive(input$btn_transform_data, {

@@ -85,10 +85,10 @@ segment_summary_plot_server <- function(id, parent, data, btn, btn_next, color, 
 
     observe({
       updateTextInput(session, "plot_title", "Plot title",
-                      paste(str_to_title(input$metric),
+                      paste(to_title_case(input$metric),
                             "Distribution by Segment"))
       updateTextInput(session, "y_axis_label", "Y Axis Label",
-                      str_to_title(input$metric))
+                      to_title_case(input$metric))
     })
 
     observeEvent(btn_next(), {

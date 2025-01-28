@@ -451,16 +451,16 @@ get_project_list <- function(path) {
   return(result)
 }
 
-# to_title_case <- function(text) {
-#   text <- tolower(text)
-#   str_split <- strsplit(text, "")[[1]]
-#   paste0(
-#     toupper(
-#       str_split[1]
-#     ),
-#     paste0(
-#       str_split[-1],
-#       collapse = ""
-#     )
-#   )
-# }
+to_title_case <- function(text) {
+  text <- tolower(text)
+  str_split <- strsplit(text, "")[[1]]
+  paste0(
+    toupper(
+      str_split[1]
+    ),
+    paste0(
+      str_split[-1],
+      collapse = ""
+    )
+  )
+}

@@ -26,7 +26,6 @@ Imports:
     shinydashboardPlus,
     standby,
     stringi,
-    stringr,
     utils,
     yaml
 License: MIT + file LICENSE 

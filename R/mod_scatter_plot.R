@@ -78,12 +78,12 @@ updateCheckboxInput(
 
     observe({
       updateTextInput(session, "plot_title", "Plot title",
-                      paste(str_to_title(input$metric_y), "vs",
-                            str_to_title(input$metric_x)))
+                      paste(to_title_case(input$metric_y), "vs",
+                            to_title_case(input$metric_x)))
       updateTextInput(session, "x_axis_label", "X Axis Label",
-                      str_to_title(input$metric_x))
+                      to_title_case(input$metric_x))
       updateTextInput(session, "y_axis_label", "Y Axis Label",
-                      str_to_title(input$metric_y))
+                      to_title_case(input$metric_y))
     })
 
     observeEvent(btn_next(), {
