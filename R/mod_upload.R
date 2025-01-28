@@ -11,7 +11,7 @@
 #' @importFrom utils read.csv 
 #' @importFrom readxl read_excel
 #' @importFrom yaml read_yaml
-#' @importFrom fs dir_copy file_move
+#' @importFrom fs dir_copy
 #' @noRd
 #'
 upload_ui <- function(id) {
@@ -265,7 +265,7 @@ upload_server <- function(id, parent, flag, btn) {
 
           set_project_title(input$cloned_project)
 
-          file_move(paste0(proj_meta$path, "/",
+          file.rename(paste0(proj_meta$path, "/",
                              proj_meta$global_dir, "/",
                              input$cloned_project, "/_",
                              input$select_project, ".yml"), paste0(proj_meta$path, "/",           
