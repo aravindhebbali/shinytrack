@@ -134,7 +134,6 @@ get_segment_names <- function(input, n, type) {
   unlist(collect)
 }
 
-#' @importFrom purrr map_int
 segment_intervals <- function(input, n, param, index = 1, type) {
 
   if (type == "predefined") {
@@ -147,7 +146,7 @@ segment_intervals <- function(input, n, param, index = 1, type) {
     input[[paste(param, i)]]
   }))
 
-  map_int(collect[[1]], index)
+  vapply(collect[[1]], function(x) x[index], integer(1))
 }
 
 add_new_segment <- function(ns) {

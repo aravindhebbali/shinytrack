@@ -1,7 +1,7 @@
 #' Transform data
 #'
 #' UI for data transformation.
-#' 
+#'
 #' @param ns Namespace of the shiny module.
 #' @param data Transaction or customer level data.
 #' @noRd
@@ -362,21 +362,18 @@ upload_excel <- function(ns) {
   )
 }
 
-#' @importFrom fs dir_info
 #' @importFrom dplyr filter mutate select last 
-#' @importFrom purrr map_chr
-#'
-get_project_list <- function(path) {
-  dir_info(paste0(path, "/rfm-projects")) %>%
-    filter(type == "directory") %>%
-    mutate(project = path %>%
-             as.character() %>%
-             strsplit(split = "/") %>%
-             map_chr(last)) %>%
-    select(Project = project,
-           `Created` = birth_time,
-           `Last Modified` = modification_time)
-}
+# get_project_list <- function(path) {
+#   dir_info(paste0(path, "/rfm-projects")) %>%
+#     filter(type == "directory") %>%
+#     mutate(project = path %>%
+#              as.character() %>%
+#              strsplit(split = "/") %>%
+#              map_chr(last)) %>%
+#     select(Project = project,
+#            `Created` = birth_time,
+#            `Last Modified` = modification_time)
+# }
 
 ui_sample_file <- function(ns) {
   tagList(
@@ -442,3 +439,28 @@ ui_clone_project <- function(ns) {
     column(12, align = "center", uiOutput(ns("clone_project")))
   )
 }
+
+get_project_list <- function(path) {
+  dirs <- list.dirs(path)[-1]
+  projects <- dir(path)
+  time_info <- file.info(dirs)[, c(5, 4)]
+  result <- cbind(projects, time_info)
+  col_names <- c("Project", "Created", "Last Modified")
+  names(result) <- col_names
+  rownames(result) <- NULL
+  return(result)
+}
+
+# to_title_case <- function(text) {
+#   text <- tolower(text)
+#   str_split <- strsplit(text, "")[[1]]
+#   paste0(
+#     toupper(
+#       str_split[1]
+#     ),
+#     paste0(
+#       str_split[-1],
+#       collapse = ""
+#     )
+#   )
+# }
