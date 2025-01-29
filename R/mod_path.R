@@ -56,15 +56,29 @@ path_server <- function(id, parent, flag) {
 
         updateTextInput(session, "path", "Directory", folder_path)
 
-        toast(
-          title = "",
-          message = "Click on Retrieve Projects to view projects",
-          duration = 2000,
-          background_color = "#0f1a34",
-          progress_bar_color = "white",
-          message_color = "white",
-          position = "bottomCenter"
-        )
+        if (flag() == "new_project") {
+          toast(
+            title = "",
+            message = "Click on Add Project to create new project",
+            duration = 2000,
+            background_color = "#0f1a34",
+            progress_bar_color = "white",
+            message_color = "white",
+            position = "bottomCenter"
+          )
+        }
+
+        if (flag() == "restore_project" || flag() == "clone_project" || flag() == "delete_project") {
+          toast(
+            title = "",
+            message = "Click on Retrieve Projects to view projects",
+            duration = 2000,
+            background_color = "#0f1a34",
+            progress_bar_color = "white",
+            message_color = "white",
+            position = "bottomCenter"
+          )
+        }
       } else {
         toast(
           title = "",
@@ -93,16 +107,18 @@ path_server <- function(id, parent, flag) {
 
       Sys.sleep(1)
 
-      toast(
-        title = "",
-        type = "warning",
-        message = paste0("Retrieving projects from `", input$path, "/rfm-projects`"),
-        duration = 2000,
-        background_color = "#0f1a34",
-        progress_bar_color = "white",
-        message_color = "white",
-        position = "bottomCenter"
-      )
+      if (flag() == "restore_project" || flag() == "clone_project" || flag() == "delete_project") {
+        toast(
+          title = "",
+          type = "warning",
+          message = paste0("Retrieving projects from `", input$path, "/rfm-projects`"),
+          duration = 2000,
+          background_color = "#0f1a34",
+          progress_bar_color = "white",
+          message_color = "white",
+          position = "bottomCenter"
+        )
+      }
 
       Sys.sleep(2)
 
