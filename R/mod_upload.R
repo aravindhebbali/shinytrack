@@ -214,14 +214,27 @@ upload_server <- function(id, parent, flag, btn) {
           )
 
           Sys.sleep(2)
-          file.copy(paste0(proj_meta$path, "/",
-                          proj_meta$global_dir, "/",
-                          input$select_project),
-                   paste0(proj_meta$path, "/",
-                          proj_meta$global_dir, "/",
-                          input$cloned_project),
-          recursive = TRUE)
 
+          # create directory
+          dir.create(paste0(proj_meta$path, "/",
+                     proj_meta$global_dir, "/",
+                     input$cloned_project))
+
+          # copy rds file
+          file.copy(paste0(proj_meta$path, "/",
+                             proj_meta$global_dir, "/",
+                             input$select_project, "/_",
+                             input$select_project, ".rds"), paste0(proj_meta$path, "/",           
+                                                                     proj_meta$global_dir, "/",
+                                                                     input$cloned_project))
+
+
+          # copy data file
+          file.copy(paste0(proj_meta$path, "/",
+                             proj_meta$global_dir, "/",
+                             input$select_project, "/data"), paste0(proj_meta$path, "/",           
+                                                                    proj_meta$global_dir, "/",
+                                                                    input$cloned_project))
 
           toast(
             title = "",
@@ -272,10 +285,10 @@ upload_server <- function(id, parent, flag, btn) {
           file.rename(paste0(proj_meta$path, "/",
                              proj_meta$global_dir, "/",
                              input$cloned_project, "/_",
-                             input$select_project, ".yml"), paste0(proj_meta$path, "/",           
+                             input$select_project, ".rds"), paste0(proj_meta$path, "/",           
                                                                      proj_meta$global_dir, "/",
                                                                      input$cloned_project, "/_",
-                                                                     input$cloned_project, ".yml"))
+                                                                     input$cloned_project, ".rds"))
 
           toast(                                                     
             title = "",
