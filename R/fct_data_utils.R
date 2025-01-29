@@ -441,6 +441,7 @@ ui_clone_project <- function(ns) {
 }
 
 get_project_list <- function(path) {
+  path <- paste0(path, "/rfm-projects")
   dirs <- list.dirs(path)[-1]
   projects <- dir(path)
   time_info <- file.info(dirs)[, c(5, 4)]
