@@ -5,5 +5,5 @@
     - [ ] `dplyr`
     - [ ] `lubridate`
     - [ ] `magrittr`
-    - [ ] `yaml`
+    - [x] `yaml`
     - [ ] `descriptr`

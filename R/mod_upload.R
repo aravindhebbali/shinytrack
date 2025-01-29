@@ -10,7 +10,6 @@
 #'
 #' @importFrom utils read.csv 
 #' @importFrom readxl read_excel
-#' @importFrom yaml read_yaml
 #' @noRd
 #'
 upload_ui <- function(id) {
@@ -258,10 +257,15 @@ upload_server <- function(id, parent, flag, btn) {
 
           Sys.sleep(2)
 
-          proj_config <- read_yaml(paste0(proj_meta$path, "/",
+          proj_config <- readRDS(paste0(proj_meta$path, "/",
                                           proj_meta$global_dir, "/",
                                           input$cloned_project, "/_",
-                                          input$select_project, ".yml"))
+                                          input$select_project, ".rds"))
+          
+          # proj_config <- read_yaml(paste0(proj_meta$path, "/",
+          #                                 proj_meta$global_dir, "/",
+          #                                 input$cloned_project, "/_",
+          #                                 input$select_project, ".yml"))
 
           set_project_title(input$cloned_project)
 
@@ -329,10 +333,15 @@ upload_server <- function(id, parent, flag, btn) {
           save_segment_summary(data()$segment_summary)
         }
 
-        proj_config <- read_yaml(paste0(proj_meta$path, "/",
+        proj_config <- readRDS(paste0(proj_meta$path, "/",
                                         proj_meta$global_dir, "/",
                                         input$select_project, "/_",
-                                        input$select_project, ".yml"))
+                                        input$select_project, ".rds"))
+        
+        # proj_config <- read_yaml(paste0(proj_meta$path, "/",
+        #                                 proj_meta$global_dir, "/",
+        #                                 input$select_project, "/_",
+        #                                 input$select_project, ".yml"))
 
         set_project_title(proj_config$title)
 

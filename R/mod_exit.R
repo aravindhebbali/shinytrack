@@ -6,7 +6,6 @@
 #' @param parent Name of the parent session.
 #' @param flag Reactive; project type.
 #'
-#' @importFrom yaml write_yaml
 #' @noRd
 #'
 exit_ui <- function(id) {
@@ -39,16 +38,24 @@ exit_server <- function(id, parent, flag) {
                          global$proj_info$title))
               }
 
-              write_yaml(global$proj_info,
+              # save metadata to .rds file
+              saveRDS(global$proj_info,
                          paste0(proj_meta$path, "/",
                                 proj_meta$global_dir, "/",
                                 global$proj_info$title, "/_",
-                                global$proj_info$title, ".yml"))
+                                global$proj_info$title, ".rds"))
+
+              # write_yaml(global$proj_info,
+              #            paste0(proj_meta$path, "/",
+              #                   proj_meta$global_dir, "/",
+              #                   global$proj_info$title, "/_",
+              #                   global$proj_info$title, ".yml"))
 
               saveRDS(global$project_data,
                       paste0(proj_meta$path, "/",
                              proj_meta$global_dir, "/",
                              global$proj_info$title, "/data"))
+              
               stopApp()
             } else {
               # redirect the user to upload data or exit without saving the project
