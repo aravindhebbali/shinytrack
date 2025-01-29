@@ -31,8 +31,9 @@ segment_input <- function(ns) {
   )
 }
 
+# use constants$ for all inputs
 restore_segment_input <- function(ns, constants) {
-  ncol <- segments_count
+  ncol <- constants$segments_count
 
   tagList(
     hr(),
@@ -50,28 +51,28 @@ restore_segment_input <- function(ns, constants) {
               column(
                 2,
                 textInput(ns(paste("segment_name_", i)), label = '',
-                          width = '150px', value = segment_names[i])
+                          width = '150px', value = constants$segment_names[i])
               ),
               column(
                 3, align = "center",
                 sliderInput(ns(paste("recency_interval_", i)), label = '',
                             min = 1, max = 5, step = 1,
-                            value = c(lower_recency[i],
-                                      upper_recency[i]))
+                            value = c(constants$lower_recency[i],
+                                      constants$upper_recency[i]))
               ),
               column(
                 3, align = "center",
                 sliderInput(ns(paste("frequency_interval_", i)), label = '',
                             min = 1, max = 5, step = 1,
-                            value = c(lower_frequency[i],
-                                      upper_frequency[i]))
+                            value = c(constants$lower_frequency[i],
+                                      constants$upper_frequency[i]))
               ),
               column(
                 3, align = "center",
                 sliderInput(ns(paste("monetary_interval_", i)), label = '',
                             min = 1, max = 5, step = 1,
-                            value = c(lower_monetary[i],
-                                      upper_monetary[i]))
+                            value = c(constants$lower_monetary[i],
+                                      constants$upper_monetary[i]))
               ),
               column(1,
                      align = "center",
