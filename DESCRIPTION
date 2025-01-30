@@ -9,7 +9,6 @@ Depends:
     R(>= 3.2.4)
 Imports:
     colourpicker,
-    descriptr,
     dplyr,
     DT,
     grDevices,
