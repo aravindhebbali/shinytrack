@@ -16,12 +16,11 @@ add_project_ui <- function(id) {
                 tab_title('Add Project'),
                 fluidRow(
                   column(12, align = "center",
-                         actionButton(ns("btn_add_project"),
-                                      "Add Project",
-                                      class = "btn-add-project",
-                                      onclick = "App.highlightTab(this, 'next-tab')"),
-                         uiOutput(ns("add_project"))
-                  )
+                         textInput(ns("project_title"), "Project Title"),
+                         actionButton(inputId = ns("btn_create_project"),
+                          label = "Create Project",
+                          class = "btn-create-new-project",
+                          onclick = "App.highlightTab(this, 'next-tab')"))
                 )
               ),
               fluidRow(
@@ -44,18 +43,6 @@ add_project_server <- function(id, parent) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
-
-    ui_create_project <- eventReactive(input$btn_add_project, {
-      column(12, align = "center",
-             textInput(ns("project_title"), "Project Title"),
-             actionButton(inputId = ns("btn_create_project"),
-                          label = "Create Project",
-                          class = "btn-create-new-project"))
-    })
-
-    output$add_project <- renderUI({
-      ui_create_project()
-    })
 
     observeEvent(input$btn_create_project, {
 
