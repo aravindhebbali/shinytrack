@@ -7,7 +7,6 @@
 #' @param data Reactive; sample or user uploaded data. 
 #' @param input, output, session Internal parameters for {shiny}
 #'
-#' @importFrom descriptr ds_screener
 #' @noRd
 #'
 screen_ui <- function(id) {
