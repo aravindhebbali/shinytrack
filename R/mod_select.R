@@ -42,7 +42,7 @@ select_ui <- function(id) {
                       column(4,
                              align = 'left',
                              actionButton(
-                               input = ns("btn_select_columns"),
+                               inputId = ns("btn_select_columns"),
                                label = "Select Columns",
                                width = '150px',
                                icon = icon('check'),

@@ -103,6 +103,7 @@ configure_server <- function(id, parent, btn, data, flag, sample) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
+    currency <- NULL
 
     observeEvent(btn(), {
       if (flag() == "sample") {
@@ -133,13 +134,24 @@ configure_server <- function(id, parent, btn, data, flag, sample) {
         updateCheckboxInput(session, "set_engine", "Interactive",
                             as.logical(inputs$plot_mode))
 
+        # legal_tender <-
+        #   inputs %>%
+        #   use_series(currency) %>%
+        #   stri_replace_all(regex = "<", replacement = "") %>%
+        #   stri_replace_all(regex = ">", replacement = "") %>%
+        #   stri_replace_all(regex = "\\+", replacement = "") %>%
+        #   tolower()
+
         legal_tender <-
-          inputs %>%
-          use_series(currency) %>%
-          stri_replace_all(regex = "<", replacement = "") %>%
-          stri_replace_all(regex = ">", replacement = "") %>%
-          stri_replace_all(regex = "\\+", replacement = "") %>%
-          tolower()
+          tolower(
+            stri_replace_all(
+              stri_replace_all(
+                stri_replace_all(inputs$currency, regex = "<", replacement = ""
+                ), regex = ">", replacement = ""
+              ), regex = "\\+", replacement = ""
+            )
+          )
+
 
         updateSelectInput(
           session, "set_currency", "Currency",

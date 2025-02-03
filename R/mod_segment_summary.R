@@ -47,7 +47,7 @@ segment_summary_server <- function(id, parent, data, btn, currency) {
           # formatCurrency(column = 4:5, currency = currency()) 
           data <- segment_overview() 
           colnames(data) <- c("Segment", "Customers", "Orders", "Revenue", "AoV")
-          formatCurrency(datatable(data), column = c(4, 5), currency = currency())
+          formatCurrency(datatable(data), columns = c(4, 5), currency = currency())
         })
       save_segment_summary(segment_overview())
     })

@@ -8,7 +8,6 @@
 #' @param data Reactive; sample or user uploaded data. 
 #' @param input, output, session Internal parameters for {shiny}
 #'
-#' @importFrom stringr str_replace 
 #' @noRd
 #' 
 transform_ui <- function(id) {

@@ -49,6 +49,8 @@ download_ui <- function(id) {
 download_server <- function(id, parent, data, btn, currency) {
   moduleServer(id, function(input, output, session) {
 
+    segment <- NULL
+
     observeEvent(btn(), {
       updateSelectInput(session, "download", label = "Download",
                         choices = c("All", unique(data()$segment)),
@@ -80,7 +82,7 @@ download_server <- function(id, parent, data, btn, currency) {
                          "transaction_count", "recency_days", "amount")
         data <- download_data()[cols_select]
         colnames(data) <- c("Customer ID", "Segment", "RFM Score", "Orders", "Recency (Days)", "Revenue")
-        formatCurrency(datatable(data), column = 6, currency = currency())
+        formatCurrency(datatable(data), columns = 6, currency = currency())
 
       })
 

@@ -42,7 +42,7 @@ score_server <- function(id, parent, data, currency) {
                          "amount", "rfm_score")
         data <- data()$rfm[cols_select]
         colnames(data) <- c("Customer ID", "Recency (Days)", "Orders", "Revenue", "RFM Score")
-        formatCurrency(datatable(data), column = 4, currency = currency())
+        formatCurrency(datatable(data), columns = 4, currency = currency())
     })
 
     observeEvent(input$back, {

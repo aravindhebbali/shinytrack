@@ -24,10 +24,12 @@ info_ui <- function(id) {
   )
 }
 
+#' @importFrom utils tail
 info_server <- function(id, parent, btn, data, flag) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
+    Project <- NULL
 
     observeEvent(btn(), {
       if (flag() == "restore_project" || flag() == "clone_project") {

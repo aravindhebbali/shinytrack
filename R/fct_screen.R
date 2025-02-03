@@ -1,3 +1,4 @@
+#' @importFrom stats complete.cases
 ds_screener <- function(data) {
 
   check_df(data)

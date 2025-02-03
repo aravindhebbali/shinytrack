@@ -41,7 +41,7 @@ segment_server <- function(id, parent, data, currency) {
         data <- data()[cols_select]
         colnames(data) <- c("Customer ID", "Segment", "RFM Score", "Orders", 
                             "Recency (Days)", "Revenue")
-        formatCurrency(datatable(data), column = 6, currency = currency())
+        formatCurrency(datatable(data), columns = 6, currency = currency())
     })
 
     observeEvent(input$back, {
