@@ -8,7 +8,6 @@
 #' @param path Reactive; path of project.
 #' @param input, output, session Internal parameters for {shiny}
 #'
-#' @importFrom dplyr pull 
 #' @noRd
 #'
 delete_project_ui <- function(id) {
@@ -42,8 +41,9 @@ delete_project_server <- function(id, parent, btn, path) {
     ns <- session$ns
 
     list_of_projects <- eventReactive(btn(), {
-      get_project_list(global$meta_info$path) %>%
-        pull(Project)
+      # get_project_list(global$meta_info$path) %>%
+      #   pull(Project)
+      get_project_list(global$meta_info$path)$Project
     })
 
     observeEvent(btn(), {

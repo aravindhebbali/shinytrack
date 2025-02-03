@@ -9,7 +9,6 @@
 #' @param input, output, session Internal parameters for {shiny}
 #'
 #' @importFrom DT DTOutput renderDT datatable formatDate
-#' @importFrom magrittr %>%
 #' @noRd
 #'
 list_projects_ui <- function(id) {
@@ -79,9 +78,11 @@ list_projects_server <- function(id, parent, flag, btn) {
     observeEvent(btn(), {
       if (nrow(project_count()) > 0) {
         output$project_count <- renderDT({
-          datatable(
-            get_project_list(global$meta_info$path)) %>%
-            formatDate(2:3, c("toLocaleString", "toLocaleString"))
+          #datatable(
+          #  get_project_list(global$meta_info$path)) %>%
+            formatDate(datatable(get_project_list(global$meta_info$path)), 
+                       2:3, 
+                       c("toLocaleString", "toLocaleString"))
         })
       }
 

@@ -84,8 +84,9 @@ median_frequency_server <- function(id, parent, data, btn, btn_next, color, engi
 
         if (input$interactive) {
           output$plotly_median_frequency <- renderPlotly({
-              median_frequency_plot() %>%
-                config(displayModeBar = TRUE,
+              # median_frequency_plot() %>%
+                config(median_frequency_plot(),
+                       displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
@@ -171,8 +172,9 @@ median_frequency_server <- function(id, parent, data, btn, btn_next, color, engi
 
         if (input$interactive) {
           output$plotly_median_frequency <- renderPlotly({
-              median_frequency_plot() %>%
-                config(displayModeBar = TRUE,
+              # median_frequency_plot() %>%
+                config(median_frequency_plot(),
+                       displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",

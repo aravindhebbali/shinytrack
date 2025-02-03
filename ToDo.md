@@ -1,9 +1,9 @@
 # Items
 
 - [x] port `ds_screener()` from `descriptr` package
-- [ ] remove following packages
-    - [ ] `dplyr`
-    - [ ] `lubridate`
-    - [ ] `magrittr`
+- [x] remove following packages
+    - [x] `dplyr`
+    - [x] `lubridate`
+    - [x] `magrittr`
     - [x] `yaml`
     - [x] `descriptr`

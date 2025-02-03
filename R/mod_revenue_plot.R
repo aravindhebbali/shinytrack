@@ -85,8 +85,8 @@ updateCheckboxInput(
 
         if (input$interactive) {
           output$plotly_revenue <- renderPlotly({
-              revenue_plot() %>%
-                config(
+              # revenue_plot() %>%
+                config(revenue_plot(),
                   displayModeBar = TRUE,
                   modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                              "zoomOut2d", "pan2d",
@@ -179,8 +179,8 @@ updateCheckboxInput(
 
         if (input$interactive) {
           output$plotly_revenue <- renderPlotly({
-              revenue_plot() %>%
-                config(
+              # revenue_plot() %>%
+                config(revenue_plot(),
                   displayModeBar = TRUE,
                   modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                              "zoomOut2d", "pan2d",

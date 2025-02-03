@@ -11,8 +11,6 @@
 #'
 #' @importFrom rfm rfm_table_order rfm_table_customer
 #' @importFrom rlang sym
-#' @importFrom dplyr where
-#' @importFrom lubridate is.Date
 #'
 #' @noRd
 #'

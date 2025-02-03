@@ -362,7 +362,6 @@ upload_excel <- function(ns) {
   )
 }
 
-#' @importFrom dplyr filter mutate select last 
 # get_project_list <- function(path) {
 #   dir_info(paste0(path, "/rfm-projects")) %>%
 #     filter(type == "directory") %>%
@@ -441,13 +440,13 @@ ui_clone_project <- function(ns) {
 }
 
 get_project_list <- function(path) {
-  path <- paste0(path, "/rfm-projects")
-  dirs <- list.dirs(path)[-1]
-  projects <- dir(path)
-  time_info <- file.info(dirs)[, c(5, 4)]
-  result <- cbind(projects, time_info)
-  col_names <- c("Project", "Created", "Last Modified")
-  names(result) <- col_names
+  path             <- paste0(path, "/rfm-projects")
+  dirs             <- list.dirs(path)[-1]
+  projects         <- dir(path)
+  time_info        <- file.info(dirs)[, c(5, 4)]
+  result           <- cbind(projects, time_info)
+  col_names        <- c("Project", "Created", "Last Modified")
+  names(result)    <- col_names
   rownames(result) <- NULL
   return(result)
 }

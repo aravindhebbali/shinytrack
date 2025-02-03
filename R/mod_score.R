@@ -32,12 +32,17 @@ score_ui <- function(id) {
 score_server <- function(id, parent, data, currency) {
   moduleServer(id, function(input, output, session) {
     output$view_score <- renderDT({
-       datatable(
-         data()$rfm %>%
-           select(customer_id, recency_days, transaction_count, amount, rfm_score) %>%
-           set_names(c("Customer ID", "Recency (Days)", "Orders", "Revenue", "RFM Score"))
-       ) %>%
-       formatCurrency(column = 4, currency = currency())
+       # datatable(
+       #   data()$rfm %>%
+       #     select(customer_id, recency_days, transaction_count, amount, rfm_score) %>%
+       #     set_names(c("Customer ID", "Recency (Days)", "Orders", "Revenue", "RFM Score"))
+       # ) %>%
+       # formatCurrency(column = 4, currency = currency())
+        cols_select <- c("customer_id", "recency_days", "transaction_count", 
+                         "amount", "rfm_score")
+        data <- data()$rfm[cols_select]
+        colnames(data) <- c("Customer ID", "Recency (Days)", "Orders", "Revenue", "RFM Score")
+        formatCurrency(datatable(data), column = 4, currency = currency())
     })
 
     observeEvent(input$back, {

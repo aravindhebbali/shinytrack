@@ -83,9 +83,18 @@ dashboard_server <- function(id, parent, btn, flag) {
 
         output$dashboard <-
           if (!is.null(data)) {
-            renderDT({ datatable(data) %>%
-                formatRound(2:3, digits = 0) %>%
-                formatCurrency(4:5) })
+            # renderDT({ datatable(data) %>%
+            #     formatRound(2:3, digits = 0) %>%
+            #     formatCurrency(4:5) })
+
+            renderDT({
+              formatCurrency(
+                formatRound(
+                  datatable(data), 2:3, digits = 0
+                ), 4:5
+              )
+            })
+            
           }
 
       } else {

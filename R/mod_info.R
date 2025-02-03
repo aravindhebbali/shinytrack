@@ -36,16 +36,17 @@ info_server <- function(id, parent, btn, data, flag) {
         proj_view <- global$proj_info
 
         if (length(proj_view) != 0) {
-
-          dir_init <-
-            dir_meta %>%
-            filter(Project == proj_view$title) %>%
-            pull(Created)
-
-          dir_mod <-
-            dir_meta %>%
-            filter(Project == proj_view$title) %>%
-            pull(`Last Modified`)
+          dir_init <- subset(dir_meta, Project == proj_view$title)$Created
+          # dir_init <-
+          #   dir_meta %>%
+          #   filter(Project == proj_view$title) %>%
+          #   pull(Created)
+          
+          dir_mod <- subset(dir_meta, Project == proj_view$title)$`Last Modified`
+          # dir_mod <-
+          #   dir_meta %>%
+          #   filter(Project == proj_view$title) %>%
+          #   pull(`Last Modified`)
 
           data_format <-
             switch(proj_view$data_format,
@@ -103,7 +104,11 @@ info_server <- function(id, parent, btn, data, flag) {
                     fluidRow(
                       column(2, align = "left", h4(class = 'label', 'Bins')),
                       column(1, align = "center", p(":")),
-                      column(9, align = "left", p(class = 'value', ifelse(is.null(proj_view$score_inputs), NA, last(proj_view$score_inputs))))
+                      column(9, align = "left", 
+                             p(class = 'value', 
+                               ifelse(is.null(proj_view$score_inputs), NA, tail(proj_view$score_inputs, n = 1))
+                              )
+                      )
                     )
                 ),
                 div(class = "project-info",

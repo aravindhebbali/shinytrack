@@ -87,8 +87,8 @@ order_dist_server <- function(id, parent, data, btn, btn_next, color, engine, fi
 
       if (input$interactive) {
         output$plotly_order_dist <- renderPlotly({
-          order_dist_plot() %>%
-            config(
+          # order_dist_plot() %>%
+            config(order_dist_plot(),
               displayModeBar = TRUE,
               modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                 "zoomOut2d", "pan2d",
@@ -156,8 +156,8 @@ order_dist_server <- function(id, parent, data, btn, btn_next, color, engine, fi
 
         if (input$interactive) {
           output$plotly_order_dist <- renderPlotly({
-            order_dist_plot() %>%
-              config(
+            # order_dist_plot() %>%
+              config(order_dist_plot(),
                 displayModeBar = TRUE,
                 modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                   "zoomOut2d", "pan2d",

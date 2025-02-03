@@ -297,8 +297,11 @@ cust_date_ui <- function(ns, data) {
 
 get_score_id_columns <- function(id, label, ns, data) {
 
- type_id <- reactive({ c(data() %>% select(where(is.numeric)) %>% names(),
-               data() %>% select(where(is.character)) %>% names()) })
+ # type_id <- reactive({ c(data() %>% select(where(is.numeric)) %>% names(),
+ #               data() %>% select(where(is.character)) %>% names()) })
+
+ type_id <- reactive({ c(names(Filter(is.numeric, data())),
+                       names(Filter(is.character, data()))) })
 
              tagList(
               column(4),
@@ -313,12 +316,14 @@ get_score_id_columns <- function(id, label, ns, data) {
 
 get_score_date_columns <- function(id, label, ns, data) {
 
- type_id <- reactive({ 
-   data() %>% 
-    select(where(is.Date)) %>% 
-    names()
- })
-               
+ # type_id <- reactive({ 
+ #   data() %>% 
+ #    select(where(is.Date)) %>% 
+ #    names()
+ # })
+
+ type_id <- names(Filter(function(x) inherits(x, "Date"), data()))            
+
              tagList(
               column(4),
               column(2, align = "right", br(), h5(label)),
@@ -332,13 +337,15 @@ get_score_date_columns <- function(id, label, ns, data) {
 
 get_score_revenue_columns <- function(id, label, ns, data) {
 
- type_id <- reactive({ 
-   data() %>% 
-    select(where(is.numeric)) %>% 
-    names()
- })
+ # type_id <- reactive({ 
+ #   data() %>% 
+ #    select(where(is.numeric)) %>% 
+ #    names()
+ # })
                
-             tagList(
+ type_id <- reactive({ names(Filter(is.numeric, data())) })
+             
+   tagList(
               column(4),
               column(2, align = "right", br(), h5(label)),
               column(6, align = "left",

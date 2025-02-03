@@ -82,8 +82,8 @@ upload_server <- function(id, parent, flag, btn) {
     })
 
     list_of_projects <- eventReactive(btn(), {
-      get_project_list(global$meta_info$path) %>%
-        pull(Project)
+      get_project_list(global$meta_info$path)$Project 
+        # pull(Project)
     })
 
     observeEvent(btn(), {

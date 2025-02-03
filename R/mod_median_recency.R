@@ -84,8 +84,9 @@ median_recency_server <- function(id, parent, data, btn, btn_next, color, engine
 
         if (input$interactive) {
           output$plotly_median_recency <- renderPlotly({
-              median_recency_plot() %>%
-                config(displayModeBar = TRUE,
+              # median_recency_plot() %>%
+                config(median_recency_plot(),
+                       displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
@@ -170,8 +171,9 @@ median_recency_server <- function(id, parent, data, btn, btn_next, color, engine
 
         if (input$interactive) {
           output$plotly_median_recency <- renderPlotly({
-              median_recency_plot() %>%
-                config(displayModeBar = TRUE,
+              # median_recency_plot() %>%
+                config(median_recency_plot(),
+                       displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",

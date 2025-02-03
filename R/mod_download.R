@@ -10,7 +10,6 @@
 #' @param input, output, session Internal parameters for {shiny}
 #'
 #' @importFrom utils write.csv
-#' @importFrom magrittr set_names
 #' @noRd
 #'
 download_ui <- function(id) {
@@ -60,22 +59,30 @@ download_server <- function(id, parent, data, btn, currency) {
       if (input$download == "All") {
         data()
       } else {
-        data() %>%
-          filter(segment == input$download)
+        subset(data(), segment == input$download)
+        # data() %>%
+        #   filter(segment == input$download)
       }
     })
 
     output$table <- 
       renderDT({
-        datatable(
-          # data <- 
-            download_data() %>%
-              select(customer_id, segment, rfm_score, transaction_count, recency_days, amount) %>%
-              set_names(c("Customer ID", "Segment", "RFM Score", "Orders", "Recency (Days)", "Revenue"))
-          # data
-        ) %>%
-        formatCurrency(column = 6, currency = currency())
-    })
+        # datatable(
+        #   # data <- 
+        #     download_data() %>%
+        #       select(customer_id, segment, rfm_score, transaction_count, recency_days, amount) %>%
+        #       set_names(c("Customer ID", "Segment", "RFM Score", "Orders", "Recency (Days)", "Revenue"))
+        #   # data
+        # ) %>%
+        # formatCurrency(column = 6, currency = currency())
+        
+        cols_select <- c("customer_id", "segment", "rfm_score", 
+                         "transaction_count", "recency_days", "amount")
+        data <- download_data()[cols_select]
+        colnames(data) <- c("Customer ID", "Segment", "RFM Score", "Orders", "Recency (Days)", "Revenue")
+        formatCurrency(datatable(data), column = 6, currency = currency())
+
+      })
 
     output$btn_download <- downloadHandler(
       filename = function() {

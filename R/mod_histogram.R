@@ -88,8 +88,8 @@ histogram_server <- function(id, parent, data, btn, btn_next, color, engine, fil
 
         if (input$interactive) {
           output$plotly_hist <- renderPlotly({
-              hist_plot() %>%
-                config(displayModeBar = TRUE,
+              # hist_plot() %>%
+                config(hist_plot(), displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
@@ -163,8 +163,8 @@ histogram_server <- function(id, parent, data, btn, btn_next, color, engine, fil
 
         if (input$interactive) {
           output$plotly_hist <- renderPlotly({
-              hist_plot() %>%
-                config(displayModeBar = TRUE,
+              # hist_plot() %>%
+                config(hist_plot(), displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",

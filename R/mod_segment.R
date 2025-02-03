@@ -30,12 +30,18 @@ segment_ui <- function(id) {
 segment_server <- function(id, parent, data, currency) {
   moduleServer(id, function(input, output, session) {
     output$segment_data <- renderDT({
-      datatable(
-        data() %>%
-          select(customer_id, segment, rfm_score, transaction_count, recency_days, amount) %>%
-          set_names(c("Customer ID", "Segment", "RFM Score", "Orders", "Recency (Days)", "Revenue"))
-      ) %>%
-          formatCurrency(column = 6, currency = currency())
+      #datatable(
+      #  data() %>%
+      #    select(customer_id, segment, rfm_score, transaction_count, recency_days, amount) %>%
+      #    set_names(c("Customer ID", "Segment", "RFM Score", "Orders", "Recency (Days)", "Revenue"))
+      #) %>%
+      #    formatCurrency(column = 6, currency = currency())
+        cols_select <- c("customer_id", "segment", "rfm_score", 
+                         "transaction_count", "recency_days", "amount")
+        data <- data()[cols_select]
+        colnames(data) <- c("Customer ID", "Segment", "RFM Score", "Orders", 
+                            "Recency (Days)", "Revenue")
+        formatCurrency(datatable(data), column = 6, currency = currency())
     })
 
     observeEvent(input$back, {

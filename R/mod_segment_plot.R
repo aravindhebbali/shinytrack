@@ -72,8 +72,8 @@ segment_plot_server <- function(id, parent, data, btn, btn_next, engine, file, f
 
         if (input$interactive) {
           output$plotly_segment <- renderPlotly({
-              segment_plot() %>%
-                config(
+              # segment_plot() %>%
+                config(segment_plot(),
                   displayModeBar = TRUE,
                   modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                              "zoomOut2d", "pan2d",
@@ -119,8 +119,8 @@ segment_plot_server <- function(id, parent, data, btn, btn_next, engine, file, f
 
         if (input$interactive) {
           output$plotly_segment <- renderPlotly({
-              segment_plot() %>%
-                config(
+              # segment_plot() %>%
+                config(segment_plot(),
                   displayModeBar = TRUE,
                   modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                              "zoomOut2d", "pan2d",

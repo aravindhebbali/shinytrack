@@ -40,11 +40,14 @@ segment_summary_server <- function(id, parent, data, btn, currency) {
     observeEvent(btn(), {
       output$segment_summary <-
         renderDT({ 
-          datatable(
-            segment_overview() %>%
-              set_names(c("Segment", "Customers", "Orders", "Revenue", "AoV"))
-          ) %>%
-          formatCurrency(column = 4:5, currency = currency()) 
+          # datatable(
+          #   segment_overview() %>%
+          #     set_names(c("Segment", "Customers", "Orders", "Revenue", "AoV"))
+          # ) %>%
+          # formatCurrency(column = 4:5, currency = currency()) 
+          data <- segment_overview() 
+          colnames(data) <- c("Segment", "Customers", "Orders", "Revenue", "AoV")
+          formatCurrency(datatable(data), column = c(4, 5), currency = currency())
         })
       save_segment_summary(segment_overview())
     })

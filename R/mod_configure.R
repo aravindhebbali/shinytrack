@@ -12,7 +12,6 @@
 #'
 #' @importFrom colourpicker colourInput updateColourInput
 #' @importFrom stringi stri_unescape_unicode stri_replace_all
-#' @importFrom magrittr use_series
 #' 
 #' @noRd
 #'

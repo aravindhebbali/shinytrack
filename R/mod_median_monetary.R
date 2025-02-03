@@ -85,8 +85,9 @@ median_monetary_server <- function(id, parent, data, btn, btn_next, color, engin
 
         if (input$interactive) {
           output$plotly_median_monetary <- renderPlotly({
-              median_monetary_plot() %>%
-                config(displayModeBar = TRUE,
+              # median_monetary_plot() %>%
+                config(median_monetary_plot(),
+                       displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
@@ -171,8 +172,9 @@ median_monetary_server <- function(id, parent, data, btn, btn_next, color, engin
 
         if (input$interactive) {
           output$plotly_median_monetary <- renderPlotly({
-              median_monetary_plot() %>%
-                config(displayModeBar = TRUE,
+              # median_monetary_plot() %>%
+                config(median_monetary_plot(),
+                       displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",

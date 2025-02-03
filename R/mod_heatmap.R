@@ -81,8 +81,8 @@ heatmap_server <- function(id, parent, data, btn, btn_next, bins, engine, file, 
 
         if (input$interactive) {
           output$plotly_heat_map <- renderPlotly({
-              heat_map() %>%
-                config(displayModeBar = TRUE,
+              # heat_map() %>%
+                config(heat_map(), displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
@@ -139,8 +139,8 @@ heatmap_server <- function(id, parent, data, btn, btn_next, bins, engine, file, 
 
         if (input$interactive) {
           output$plotly_heat_map <- renderPlotly({
-              heat_map() %>%
-                config(displayModeBar = TRUE,
+              # heat_map() %>%
+                config(heat_map(), displayModeBar = TRUE,
                        modeBarButtonsToRemove = c("zoom2d", "zoomIn2d",
                                                   "zoomOut2d", "pan2d",
                                                   "lasso2d", "autoScale2d",
