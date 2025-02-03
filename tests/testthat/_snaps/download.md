@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="col-sm-12" align="center">
-                <a id="download_segment-btn_download" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+                <a id="download_segment-btn_download" class="btn btn-default shiny-download-link disabled" href="" target="_blank" download aria-disabled="true" tabindex="-1">
                   <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
                   Download
                 </a>

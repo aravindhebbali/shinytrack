@@ -26,8 +26,11 @@
             </div>
             <div class="row">
               <div class="col-sm-12" align="center">
-                <button class="btn btn-default action-button btn-add-project" id="add_project-btn_add_project" onclick="App.highlightTab(this, &#39;next-tab&#39;)" type="button">Add Project</button>
-                <div id="add_project-add_project" class="shiny-html-output"></div>
+                <div class="form-group shiny-input-container">
+                  <label class="control-label" id="add_project-project_title-label" for="add_project-project_title">Project Title</label>
+                  <input id="add_project-project_title" type="text" class="shiny-input-text form-control" value=""/>
+                </div>
+                <button class="btn btn-default action-button btn-create-new-project" id="add_project-btn_create_project" onclick="App.highlightTab(this, &#39;next-tab&#39;)" type="button">Create Project</button>
               </div>
             </div>
           </div>
